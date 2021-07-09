@@ -17,7 +17,7 @@ export default {
     ...mapState(['loading']),
   },
   mounted () {
-    this.sendLogin(); // sample re  quest pattern
+    // this.sendLogin(); // sample login request pattern
   },
   data() {
     return {}
