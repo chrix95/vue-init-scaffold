@@ -3,7 +3,7 @@ import axios from "axios";
 
 // create a new axios instance
 const instance = axios.create({
-  baseURL: `${process.env.VUE_APP_ENDPOINT_URL}`
+  baseURL: `${process.env.VUE_APP_ENDPOINT_URL}/api/v1`
 });
 
 // before a request is made start the nprogress

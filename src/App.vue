@@ -10,14 +10,44 @@
 
 <script>
 import { mapState } from "vuex";
-
+import AuthenticationService from './services/AuthenticationService'
 export default {
   name: "App",
   computed: {
     ...mapState(['loading']),
   },
+  mounted () {
+    this.sendLogin(); // sample re  quest pattern
+  },
   data() {
     return {}
+  },
+  methods: {
+    sendLogin() {
+      const payload = {
+        email: "engchris95@gmail.com",
+        password: "secret1234"
+      }
+      this.$store.dispatch("loading", true)
+      AuthenticationService.login(payload).then((result) => {
+        this.showAlert("Success", "User logged in successful", "success")
+      }).catch((err) => {
+        if (err.response === undefined) {
+          this.showAlert("Error occured", "Oops! took long to get a response", "warning")
+        } else {
+          this.showAlert("Error occured", "Oops! took long to get a response", "warning")
+        }
+      }).finallly(() => {
+        this.$store.dispatch("loading", false)
+      });
+    },
+    showAlert(title, text, type) {
+      this.$fire({
+        title,
+        text,
+        type: type ? type : "warning",
+      })
+    }
   },
 };
 </script>
