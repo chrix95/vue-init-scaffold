@@ -28,7 +28,7 @@ export default {
         email: "engchris95@gmail.com",
         password: "secret1234"
       }
-      this.$store.dispatch("loading", true)
+      this.$store.dispatch("setLoading", true)
       AuthenticationService.login(payload).then((result) => {
         this.showAlert("Success", "User logged in successful", "success")
       }).catch((err) => {
@@ -37,8 +37,8 @@ export default {
         } else {
           this.showAlert("Error occured", "Oops! took long to get a response", "warning")
         }
-      }).finallly(() => {
-        this.$store.dispatch("loading", false)
+      }).finally(() => {
+        this.$store.dispatch("setLoading", false)
       });
     },
     showAlert(title, text, type) {
