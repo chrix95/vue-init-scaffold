@@ -18,7 +18,7 @@
 
 <script>
 import { mapState } from "vuex";
-import AuthenticationService from './services/AuthenticationService'
+import AuthHelpers from './functions/actions/AuthRequest'
 import MainNavigation from './components/layouts/MainNavigation'
 import SideMenu from './components/layouts/SideMenu'
 import Footer from './components/layouts/Footer'
@@ -32,30 +32,45 @@ export default {
     SideMenu,
     Footer
   },
+  beforeMount() {
+    if (this.$store.state.isUserLoggedIn) {
+      this.$router.push({
+        name: 'Dashboard'
+      });
+    }
+  },
   mounted () {
     // this.sendLogin(); // sample login request pattern
   },
   data() {
-    return {}
-  },
-  methods: {
-    sendLogin() {
-      const payload = {
+    return {
+      fields: {
         email: "engchris95@gmail.com",
         password: "secret1234"
       }
-      this.$store.dispatch("setLoading", true)
-      AuthenticationService.login(payload).then((result) => {
-        this.showAlert("Success", "User logged in successful", "success")
-      }).catch((err) => {
-        if (err.response === undefined) {
-          this.showAlert("Error occured", "Oops! took long to get a response", "warning")
+    }
+  },
+  methods: {
+    async sendLogin() {
+      if (this.validateRequest()) {
+        const response = await AuthHelpers.loginRequest(this.fields)
+        if (response.status) {
+          this.showAlert('Success', 'User logged in successful', 'success')
         } else {
-          this.showAlert("Error occured", "Oops! took long to get a response", "warning")
+          this.showAlert('Error occured', response.message, 'error')
         }
-      }).finally(() => {
-        this.$store.dispatch("setLoading", false)
-      });
+      }
+    },
+    validateRequest() {
+      if (this.fields.email) {
+        if (this.fields.password) {
+          return true
+        } else {
+          this.showAlert('Validation Error', 'Kidnly provide your password', 'error')
+        }
+      } else {
+        this.showAlert('Validation Error', 'Kidnly provide your email address', 'error')
+      }
     },
     showAlert(title, text, type) {
       this.$fire({

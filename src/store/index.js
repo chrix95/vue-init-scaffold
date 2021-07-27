@@ -15,8 +15,8 @@ export default new Vuex.Store({
       state.loading = type;
     },
     SET_USER_INFO(state, credentials) {
-      state.token = credentials.token;
-      state.user = credentials.user;
+      state.token = credentials?.token?.secret;
+      state.user = credentials?.user;
       sessionStorage.setItem("setResponse", JSON.stringify(credentials));
       state.isUserLoggedIn = true;
     },
