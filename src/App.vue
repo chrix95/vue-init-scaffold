@@ -1,20 +1,33 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="main-wrapper main-wrapper-1">
+      <div class="navbar-bg"></div>
+      <main-navigation />
+      <side-menu />
+      <!-- Main Content -->
+      <div class="main-content">
+        <router-view />
+      </div>
+      <footer />
     </div>
-    <router-view />
   </div>
 </template>
 
 <script>
 import { mapState } from "vuex";
 import AuthenticationService from './services/AuthenticationService'
+import MainNavigation from './components/layouts/MainNavigation'
+import SideMenu from './components/layouts/SideMenu'
+import Footer from './components/layouts/Footer'
 export default {
   name: "App",
   computed: {
     ...mapState(['loading']),
+  },
+  components: {
+    MainNavigation,
+    SideMenu,
+    Footer
   },
   mounted () {
     // this.sendLogin(); // sample login request pattern
@@ -53,14 +66,6 @@ export default {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
 #nav {
   padding: 30px;
 }
