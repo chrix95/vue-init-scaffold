@@ -24,14 +24,13 @@
           </div>
 
           <div class="card card-primary">
-            <div class="card-header"><h4>Login</h4></div>
+            <div class="card-header"><h4>Reset Password</h4></div>
+
             <div class="card-body">
-              <form
-                method="POST"
-                action="#"
-                class="needs-validation"
-                novalidate=""
-              >
+              <p class="text-muted">
+                We will send a link to reset your password
+              </p>
+              <form method="POST">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
@@ -43,28 +42,35 @@
                     required
                     autofocus
                   />
-                  <div class="invalid-feedback">Please fill in your email</div>
                 </div>
+
                 <div class="form-group">
-                  <div class="d-block">
-                    <label for="password" class="control-label">Password</label>
-                    <div class="float-right">
-                      <router-link to="/auth/forgot-password" class="text-small">
-                        Forgot Password?
-                      </router-link>
-                    </div>
-                  </div>
+                  <label for="password">New Password</label>
                   <input
                     id="password"
                     type="password"
-                    class="form-control"
+                    class="form-control pwstrength"
+                    data-indicator="pwindicator"
                     name="password"
                     tabindex="2"
                     required
                   />
-                  <div class="invalid-feedback">
-                    please fill in your password
+                  <div id="pwindicator" class="pwindicator">
+                    <div class="bar"></div>
+                    <div class="label"></div>
                   </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="password-confirm">Confirm Password</label>
+                  <input
+                    id="password-confirm"
+                    type="password"
+                    class="form-control"
+                    name="confirm-password"
+                    tabindex="2"
+                    required
+                  />
                 </div>
 
                 <div class="form-group">
@@ -73,7 +79,7 @@
                     class="btn btn-primary btn-lg btn-block"
                     tabindex="4"
                   >
-                    Login
+                    Reset Password
                   </button>
                 </div>
               </form>
@@ -85,16 +91,10 @@
     </div>
   </section>
 </template>
-
 <script>
-import { mapState } from "vuex";
 export default {
-  name: "Login",
-  computed: {
-    ...mapState(["loading"]),
-  },
+    name: 'AuthResetPassword'
 };
 </script>
-
-<style scoped>
+<style>
 </style>

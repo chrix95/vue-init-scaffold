@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Login from '../views/Login.vue'
 import store from "../store";
 
 Vue.use(VueRouter)
@@ -8,18 +8,22 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: () => import('../views/About.vue')
-  },
-  {
-    path: '/login',
     name: 'Login',
-    component: () => import('../views/Login.vue')
+    component: Login,
+    alias: "/login",
+    meta: { pageTitle: 'Login' }
+  },
+  {
+    path: '/auth/forgot-password',
+    name: 'ForgotPassword',
+    component: () => import('../views/Auth/AuthForgotPassword.vue'),
+    meta: { pageTitle: 'Forgot Password' }
+  },
+  {
+    path: '/auth/reset-password',
+    name: 'ResetPassword',
+    component: () => import('../views/Auth/AuthResetPassword.vue'),
+    meta: { pageTitle: 'Reset Password' }
   },
   {
     path: '/auth/dashboard',

@@ -24,14 +24,13 @@
           </div>
 
           <div class="card card-primary">
-            <div class="card-header"><h4>Login</h4></div>
+            <div class="card-header"><h4>Forgot Password</h4></div>
+
             <div class="card-body">
-              <form
-                method="POST"
-                action="#"
-                class="needs-validation"
-                novalidate=""
-              >
+              <p class="text-muted">
+                We will send a link to reset your password
+              </p>
+              <form method="POST">
                 <div class="form-group">
                   <label for="email">Email</label>
                   <input
@@ -43,28 +42,6 @@
                     required
                     autofocus
                   />
-                  <div class="invalid-feedback">Please fill in your email</div>
-                </div>
-                <div class="form-group">
-                  <div class="d-block">
-                    <label for="password" class="control-label">Password</label>
-                    <div class="float-right">
-                      <router-link to="/auth/forgot-password" class="text-small">
-                        Forgot Password?
-                      </router-link>
-                    </div>
-                  </div>
-                  <input
-                    id="password"
-                    type="password"
-                    class="form-control"
-                    name="password"
-                    tabindex="2"
-                    required
-                  />
-                  <div class="invalid-feedback">
-                    please fill in your password
-                  </div>
                 </div>
 
                 <div class="form-group">
@@ -73,10 +50,15 @@
                     class="btn btn-primary btn-lg btn-block"
                     tabindex="4"
                   >
-                    Login
+                    Forgot Password
                   </button>
                 </div>
               </form>
+              <div class="text-center mt-4 mb-3">
+                <router-link to="/login" class="text-small">
+                  Already have an account?
+                </router-link>
+              </div>
             </div>
           </div>
           <div class="simple-footer">Copyright &copy; Asolar Nigeria Limited {{ new Date().getFullYear() }}</div>
@@ -89,7 +71,7 @@
 <script>
 import { mapState } from "vuex";
 export default {
-  name: "Login",
+  name: "AuthForgotPassword",
   computed: {
     ...mapState(["loading"]),
   },

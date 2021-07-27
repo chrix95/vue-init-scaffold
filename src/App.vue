@@ -1,6 +1,9 @@
 <template>
   <div id="app">
-    <div class="main-wrapper main-wrapper-1">
+    <div v-if="!isUserLoggedIn">
+      <router-view />
+    </div>
+    <div class="main-wrapper main-wrapper-1" v-else>
       <div class="navbar-bg"></div>
       <main-navigation />
       <side-menu />
@@ -22,7 +25,7 @@ import Footer from './components/layouts/Footer'
 export default {
   name: "App",
   computed: {
-    ...mapState(['loading']),
+    ...mapState(['loading', 'isUserLoggedIn']),
   },
   components: {
     MainNavigation,
