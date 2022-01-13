@@ -16,7 +16,7 @@
         >
           <div class="login-brand">
             <img
-              src="assets/img/asolar-logo.png"
+              src="assets/img/logo.png"
               alt="logo"
               width="70%"
               class="shadow-light"
@@ -85,7 +85,7 @@
               </form>
             </div>
           </div>
-          <div class="simple-footer">Copyright &copy; Asolar Nigeria Limited {{ new Date().getFullYear() }}</div>
+          <div class="simple-footer">Copyright &copy; [COMPANY NAME] {{ new Date().getFullYear() }}</div>
         </div>
       </div>
     </div>

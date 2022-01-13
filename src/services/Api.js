@@ -10,15 +10,13 @@ const instance = axios.create({
 instance.interceptors.request.use(config => {
   const userString = JSON.parse(sessionStorage.getItem("setResponse"));
   if (userString && userString.token) {
-    config.headers['Authorization'] =  `Bearer ${userString.token}`;
+    config.headers['Authorization'] =  `Bearer ${userString.token.secret}`;
   }
-//   NProgress.start();
   return config;
 });
 
 // before a response is returned stop nprogress
 instance.interceptors.response.use(response => {
-//   NProgress.done();
   return response;
 });
 

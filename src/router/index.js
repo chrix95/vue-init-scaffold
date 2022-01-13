@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Login from '../views/Login.vue'
 import store from "../store";
+import layout from '../layout'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,30 @@ const routes = [
     name: 'Dashboard',
     component: () => import('../views/Dashboard/Index.vue'),
     meta: { requiresAuth: true, pageTitle: 'Dashboard' }
+  },
+  {
+    path: '/orders',
+    component: layout,
+    children: [
+      {
+        path: 'list',
+        name: 'orders-list',
+        component: () => import('@/pages/orders/index')
+      },
+      {
+        path: 'edit/:orderId/status',
+        name: 'orders-edit-status',
+        component: () => import('@/pages/orders/index'),
+        props: true
+      },
+      {
+        path: 'view/:orderId',
+        name: 'orders-view',
+        component: () => import('@/pages/orders/index'),
+        props: true
+      }
+    ],
+    meta: { requiresAuth: true }
   },
   {
     path: "*",

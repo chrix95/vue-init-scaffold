@@ -8,9 +8,9 @@ export default {
     return Api().post("/auth/verify-account", credentials);
   },
   login(credentials) {
-    return Api().post("/auth/login", credentials);
+    return Api().post("/admins/login", credentials);
   },
   logout(credentials) {
-    return Api().get("/auth/logout", credentials);
+    return Api().get("/admins/logout", credentials);
   }
 };
